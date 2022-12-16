@@ -31,4 +31,18 @@ public class VendingMachineTest {
         assertThatExceptionOfType(BadCoinException.class)
                 .isThrownBy(() -> new Coin(value));
     }
+
+    @Test
+    public void rejectedCoins() {
+        // Given a dinar coin
+        DinarCoin dinarCoin = new DinarCoin();
+        Machine machine = new Machine();
+
+        // When I insert the coin in the machine
+        machine.insertCoin(dinarCoin);
+
+        // Then the machine returns my coin
+        assertThat(machine.returnedCoins()).contains(dinarCoin);
+    }
+
 }
