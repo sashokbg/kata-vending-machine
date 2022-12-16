@@ -11,8 +11,10 @@ The super-duper vend-o-mat has the following business rules:
 **Rule 1**: Accepted coins are 0.05,0.10,0.20,0.50,1.0 and 2.0 euros.
 
 **Rule 2**: Unknown coins are rejected and returned
+- Example: Inserting a foreign coin, the coin falls in the tray
 
 **Rule 3**: Inserting a coin increases the user credit
+- Example: Inserting 10 cents will result in credit by 0.10€
 
 **Rule 4**: Pressing the reset button will return the user's money
 
