@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Machine {
-    List<DinarCoin> insertedCoins = new ArrayList<>();
-    int credit;
+    private final List<Coin> insertedCoins = new ArrayList<>();
+    private final List<Coin> returnedCoins = new ArrayList<>();
 
-    public void insertCoin(DinarCoin coin) {
-        insertedCoins.add(coin);
+    public void insertCoin(Coin coin) {
+        if(!(coin instanceof DinarCoin)) {
+            insertedCoins.add(coin);
+        } else {
+            returnedCoins.add(coin);
+        }
     }
 
-    public List<DinarCoin> returnedCoins() {
-        return insertedCoins;
+    public List<Coin> returnedCoins() {
+        return returnedCoins;
     }
 
     public int credit() {
-        return 0;
+        return insertedCoins.stream()
+                .map(Coin::value)
+                .reduce(0, Integer::sum);
     }
 }

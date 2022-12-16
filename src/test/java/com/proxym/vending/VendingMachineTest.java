@@ -35,7 +35,7 @@ public class VendingMachineTest {
     @Test
     public void rejectedCoins() {
         // Given a dinar coin
-        DinarCoin dinarCoin = new DinarCoin();
+        DinarCoin dinarCoin = new DinarCoin(10);
         Machine machine = new Machine();
 
         // When I insert the coin in the machine
@@ -43,6 +43,34 @@ public class VendingMachineTest {
 
         // Then the machine returns my coin
         assertThat(machine.returnedCoins()).contains(dinarCoin);
+    }
+
+    @Test
+    public void insertCoin() {
+        // given a valid coin
+        Coin coin = new Coin(10);
+        Machine machine = new Machine();
+
+        // when i insert the coin
+        machine.insertCoin(coin);
+
+        // then my credit is increased
+        assertThat(machine.credit()).isEqualTo(10);
+    }
+
+    @Test
+    public void insertTwoCoin() {
+        // given a valid coin
+        Coin coin = new Coin(10);
+        Coin dinarCoin = new DinarCoin(10);
+        Machine machine = new Machine();
+
+        // when i insert the coin
+        machine.insertCoin(coin);
+        machine.insertCoin(dinarCoin);
+
+        // then my credit is increased
+        assertThat(machine.credit()).isEqualTo(10);
     }
 
 }
